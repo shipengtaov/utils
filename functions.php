@@ -36,7 +36,7 @@ function time_count_wrapper(callable $fn, $params = array(), $print_direct = Tru
 	$end = explode(' ', microtime());
 	$msg = '<div style="background:#808080;padding:2px;margin:2px;position:relative;left:20px;">';
 	$msg .= '<code>';
-	$msg .= $fn . '() 耗时: ' . ( ($end[0]+$end[1]) - ($start[0]+$start[1]) ) . 's';
+	$msg .= $fn . '() takes: ' . ( ($end[0]+$end[1]) - ($start[0]+$start[1]) ) . 's';
 	$msg .= '</code>';
 	$msg .= '</div>';
 	if($print_direct){
@@ -46,7 +46,7 @@ function time_count_wrapper(callable $fn, $params = array(), $print_direct = Tru
 	return $result;
 }
 
-if($debug == 1){
+if(!empty($debug) && $debug == 1){
 	register_shutdown_function('print_call_info');
 }
 
