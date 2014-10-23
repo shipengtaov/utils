@@ -22,3 +22,14 @@ function array_htmlspecialchars($arr){
 	}
 	return $arr;
 }
+
+function time_count_wrapper(callable $fn, $params){
+	if(!is_callable($fn)){
+		exit($fn . ' is not callable');
+	}
+	$start = explode(' ', microtime());
+	$result = call_user_func_array($fn, $params);
+	$end = explode(' ', microtime());
+	echo '<div style="background:#808080;padding:2px;position:relative;left:20px;"><code>', $fn, '() 耗时: ', ( ($end[0]+$end[1]) - ($start[0]+$start[1]) ), 's</code></div>';
+	return $result;
+}
