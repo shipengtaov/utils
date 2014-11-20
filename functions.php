@@ -11,6 +11,14 @@ function p($var, $var_dump = False, $halt = False){
 		exit;
 }
 
+/**
+ * $filepath => __FILE__
+ */
+function __main__( $filepath ){
+	$include_files = get_included_files();
+	return $filepath == $include_files[0];
+}
+
 function array_htmlspecialchars($arr){
 	if(is_string($arr)){
 		$arr = htmlspecialchars($arr);
